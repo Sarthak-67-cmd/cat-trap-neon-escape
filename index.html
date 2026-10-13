@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0b18">
+  <meta name="description" content="Cat Trap: Neon Escape — a neon hex-grid puzzle game. Block the paths and trap the cat before it escapes.">
+  <title>Cat Trap: Neon Escape</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Cat Trap home">
+        <span class="brand-icon" aria-hidden="true">✦</span>
+        <span class="brand-name">ARCADE<span class="brand-dot">.</span>LAB</span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-button" id="sound-toggle" type="button" aria-pressed="true" title="Toggle sound effects">
+          <span id="sound-icon" aria-hidden="true">♫</span><span id="sound-label">SOUND ON</span>
+        </button>
+        <button class="icon-button music-button" id="music-toggle" type="button" aria-pressed="false" title="Turn original background music on">
+          <span id="music-icon" aria-hidden="true">♬</span><span id="music-label">MUSIC OFF</span>
+        </button>
+        <button class="icon-button restart-button" id="restart-button" type="button" title="Restart this level">
+          <span aria-hidden="true">↻</span><span>RESTART</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow"><span class="eyebrow-dot"></span> PUZZLE PROTOCOL <span class="eyebrow-divider">/</span> 001</p>
+      <h1>CAT TRAP <span>NEON ESCAPE</span></h1>
+      <p class="intro-copy">Think ahead. Block the route. Keep the little escape artist inside.</p>
+    </section>
+
+    <section class="game-layout" aria-label="Cat Trap game">
+      <div class="game-panel panel">
+        <div class="game-panel-header">
+          <div>
+            <p class="small-label">CURRENT MISSION</p>
+            <h2 id="mission-title">Containment drill <span id="level-number">01</span></h2>
+          </div>
+          <div class="live-status"><span class="live-dot"></span> SYSTEM LIVE</div>
+        </div>
+
+        <div class="stats-row" aria-label="Game stats">
+          <div class="stat"><span class="stat-label">LEVEL</span><strong id="level-stat">01</strong></div>
+          <div class="stat"><span class="stat-label">MOVES</span><strong id="moves-stat">00</strong></div>
+          <div class="stat"><span class="stat-label">BEST LEVEL</span><strong id="best-stat">01</strong></div>
+        </div>
+
+        <div class="board-frame">
+          <div class="board-topline"><span>HEX GRID <span class="muted">//</span> <span id="grid-size">RADIUS 04</span></span><span class="board-key"><i></i> CAT POSITION</span></div>
+          <div id="game-board" class="game-board" role="group" aria-label="Game board. Tap an empty tile to place a barrier."></div>
+          <div class="board-bottomline"><span><span class="tiny-signal"></span> AWAITING INPUT</span><span id="board-hint">BLOCK A TILE TO BEGIN</span></div>
+        </div>
+
+        <div class="message-line" id="game-message" role="status" aria-live="polite">
+          <span class="message-icon" aria-hidden="true">⌁</span>
+          <span>Tap a tile to place a barrier. The cat moves after every turn.</span>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <section class="panel objective-panel">
+          <div class="section-heading"><span class="section-icon">◎</span><span>MISSION OBJECTIVE</span></div>
+          <div class="objective-art" aria-hidden="true"><span class="orbit orbit-a"></span><span class="orbit orbit-b"></span><span class="objective-cat">🐈‍⬛</span><span class="target target-one">+</span><span class="target target-two">+</span></div>
+          <h3>Outsmart the escape artist.</h3>
+          <p>Place barriers on the hex tiles to cut off every route to the edge. The cat will search for an open path after each move.</p>
+          <div class="objective-rule"><span class="rule-dot cyan"></span><span><strong>YOU WIN</strong> when every exit route is blocked.</span></div>
+          <div class="objective-rule"><span class="rule-dot pink"></span><span><strong>CAT WINS</strong> if it reaches the outer ring.</span></div>
+        </section>
+
+        <section class="panel controls-panel">
+          <div class="section-heading"><span class="section-icon">⌘</span><span>HOW TO PLAY</span></div>
+          <div class="step"><span class="step-number">01</span><p><strong>Pick a tile</strong><br>Tap any empty hex to place a barrier.</p></div>
+          <div class="step"><span class="step-number">02</span><p><strong>Read the route</strong><br>The cat moves one tile toward an exit.</p></div>
+          <div class="step"><span class="step-number">03</span><p><strong>Close the net</strong><br>Build a wall and trap it inside.</p></div>
+          <div class="tip-box"><span aria-hidden="true">✧</span><p><strong>PRO TIP</strong><br>Control the outer lanes early. Don't just chase the cat.</p></div>
+        </section>
+
+        <div class="side-footer"><span>CAT TRAP <span class="muted">v1.0</span></span><span>MADE FOR QUICK BRAINS <span aria-hidden="true">✦</span></span></div>
+      </aside>
+    </section>
+    <footer class="page-footer"><span>ONE CAT. SIX DIRECTIONS. NO WAY OUT.</span><span>LOCAL HIGH SCORE SAVED ON THIS DEVICE</span></footer>
+  </main>
+
+  <div class="modal-backdrop" id="result-modal" hidden>
+    <section class="result-modal panel" role="dialog" aria-modal="true" aria-labelledby="result-title" aria-describedby="result-description">
+      <div class="result-symbol" id="result-symbol" aria-hidden="true">✦</div>
+      <p class="eyebrow" id="result-eyebrow">MISSION REPORT</p>
+      <h2 id="result-title">CAT CONTAINED</h2>
+      <p id="result-description">Every exit is blocked. Great strategy.</p>
+      <div class="result-stat"><span>LEVEL</span><strong id="result-level">01</strong><span>MOVES</span><strong id="result-moves">00</strong></div>
+      <button class="primary-button" id="result-main-button" type="button">NEXT LEVEL <span aria-hidden="true">→</span></button>
+      <button class="text-button" id="result-retry-button" type="button">Replay this level</button>
+    </section>
+  </div>
+</body>
+</html>
