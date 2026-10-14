@@ -1,4 +1,5 @@
 # Cat Trap: Neon Escape
+[![Netlify Status](https://api.netlify.com/api/v1/badges/19c86dee-574e-4edb-a4b5-b9e08ac4b0dd/deploy-status)](https://app.netlify.com/projects/cat-trap/deploys)
 
 A standalone browser puzzle inspired by hex-grid cat-trapping games. This is an original implementation with its own neon arcade layout.
 
